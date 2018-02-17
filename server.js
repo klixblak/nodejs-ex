@@ -77,6 +77,24 @@ app.get('/', function (req, res) {
   }
 });
 
+app.get('/sailing-conditions', function (req, res) {
+        
+        // try to initialize the db on every request if it's not already
+        // initialized.
+        if (!db) {
+        initDb(function(err){});
+        }
+        if (db) {
+        db.collection('counts').count(function(err, count ){
+                                      res.send('{ Wind Speed: ' + count + '}');
+                                      });
+        } else {
+        res.send('{ pageCount: -1 }');
+        }
+
+        
+});
+
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
