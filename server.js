@@ -127,7 +127,12 @@ app.get('/weatherinfo:location', function(req, res)
                             //res.write(JSON.stringify(body));
                             
                             // create the specific JSON for the specialised response back to the caller
-                            res.json({Location:body.name , WindSpeed:body.wind.speed*1.943844 , WindDirection:body.wind.deg , Temperature:body.main.temp , Overview:body.weather[0].main});
+                            res.json({Location:body.name , WindSpeed:body.wind.speed , WindDirection:body.wind.deg , Temperature:body.main.temp , Overview:body.weather[0].main});
+                            res.end();
+                            }
+                            else
+                            {
+                            res.json({Location:"Location Not Found"});
                             res.end();
                             }
                             });
